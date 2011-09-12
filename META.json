@@ -36,14 +36,14 @@
    "provides" : {
       "Text::Wrap::Smart::XS" : {
          "file" : "lib/Text/Wrap/Smart/XS.pm",
-         "version" : "0.05_01"
+         "version" : "0.06"
       }
    },
-   "release_status" : "testing",
+   "release_status" : "stable",
    "resources" : {
       "license" : [
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.05_01"
+   "version" : "0.06"
 }

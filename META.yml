@@ -17,11 +17,11 @@ name: Text-Wrap-Smart-XS
 provides:
   Text::Wrap::Smart::XS:
     file: lib/Text/Wrap/Smart/XS.pm
-    version: 0.05_01
+    version: 0.06
 requires:
   Carp: 0
   Params::Validate: 0
   boolean: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.05_01
+version: 0.06

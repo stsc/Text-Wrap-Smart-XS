@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::Wrap::Smart::XS.
 
+0.06  2011-09-12  <schubiger@cpan.org>
+
+ - Merged development version to stable.
+
 0.05_01  2011-09-04  <schubiger@cpan.org>
 
  - Refactor exact_wrap() and fuzzy_wrap().
