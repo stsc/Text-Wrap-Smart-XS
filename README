@@ -10,7 +10,7 @@ SYNOPSIS
      @chunks = fuzzy_wrap($text, $wrap_at);
 
 DESCRIPTION
-    `Text::Wrap::Smart::XS' is the faster companion of `Text::Wrap::Smart'.
+    "Text::Wrap::Smart::XS" is the faster companion of "Text::Wrap::Smart".
 
 FUNCTIONS
   exact_wrap
@@ -34,10 +34,10 @@ FUNCTIONS
 
 EXPORT
   Functions
-    `exact_wrap(), fuzzy_wrap()' are exportable.
+    "exact_wrap(), fuzzy_wrap()" are exportable.
 
   Tags
-    `:all - *()'
+    ":all - *()"
 
 BUGS & CAVEATS
     The wrapping length will not be applied directly, but is used to
@@ -53,5 +53,5 @@ LICENSE
     This program is free software; you may redistribute it and/or modify it
     under the same terms as Perl itself.
 
-    See http://dev.perl.org/licenses/
+    See <http://dev.perl.org/licenses/>
 

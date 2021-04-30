@@ -9,9 +9,15 @@
     if (string)                      \
       t = string;                    \
     else                             \
-      t = (char *)text;              \
+      t = (char *)text;
 
-void
+#define FINALIZE_STRING() do { \
+    *dest = '\0';              \
+    *string = buf;             \
+    return;                    \
+} while (0)
+
+static void
 subst_newlines (const char *text, char **string)
 {
   if (strpbrk (text, "\n\r"))
@@ -20,7 +26,8 @@ subst_newlines (const char *text, char **string)
       char *dest;
       char *buf, *nl;
       const char *eot = text + strlen (text);
-      buf = dest = malloc (strlen (text) + 1);
+      Newx (buf, strlen (text) + 1, char);
+      dest = buf;
       while ((nl = strpbrk (src, "\n\r")))
         {
           char *p = nl;
@@ -31,7 +38,7 @@ subst_newlines (const char *text, char **string)
             {
               case '\n': p++; break; /* LF */
               case '\r': p++; break; /* CR */
-              default:        break; /* never reached */
+              default:     abort (); /* never reached */
             }
           if (*nl == '\r' && *p == '\n') /* CRLF */
             p++;
@@ -39,7 +46,7 @@ subst_newlines (const char *text, char **string)
           if (p < eot)
             *dest++ = ' ';
           else
-            goto end_of_text;
+            FINALIZE_STRING ();
         }
       if (src < eot)
         {
@@ -47,9 +54,7 @@ subst_newlines (const char *text, char **string)
           dest += eot - src;
           src  += eot - src;
         }
-      end_of_text:
-      *dest = '\0';
-      *string = buf;
+      FINALIZE_STRING ();
     }
 }
 

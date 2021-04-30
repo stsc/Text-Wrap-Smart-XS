@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::Wrap::Smart::XS.
 
+0.06_01  2021-04-30  <schubiger@cpan.org>
+
+ - Tweak subst_newlines().
+
 0.06  2011-09-12  <schubiger@cpan.org>
 
  - Merged development version to stable.
