@@ -8,7 +8,7 @@ use Text::Wrap::Smart::XS qw(fuzzy_wrap);
 
 my $join = sub { local $_ = shift; chomp; s/\n/ /g; $_ };
 
-my $text = <<'EOT';
+my $text = $join->(<<'EOT');
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Curabitur vel diam nec nisi pellentesque gravida a sit amet
 metus. Fusce non volutpat arcu. Lorem ipsum dolor sit amet,

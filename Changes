@@ -1,5 +1,19 @@
 Revision history for Perl extension Text::Wrap::Smart::XS.
 
+0.06_02  2021-05-16  <schubiger@cpan.org>
+
+ - Handle substitution of form feeds/tabs.
+
+ - Trim whitespace at begin/end of text.
+
+ - Convert multiple spaces to single ones.
+
+ - Rename subst_newlines() to subst_to_spaces().
+
+ - subst_to_spaces(): amend naming of variable.
+
+ - Add/adjust tests.
+
 0.06_01  2021-04-30  <schubiger@cpan.org>
 
  - Tweak subst_newlines().

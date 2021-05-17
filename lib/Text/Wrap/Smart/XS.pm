@@ -10,7 +10,7 @@ use Params::Validate ':all';
 
 our ($VERSION, @EXPORT_OK, %EXPORT_TAGS, @subs);
 
-$VERSION = '0.06_01';
+$VERSION = '0.06_02';
 @subs = qw(exact_wrap fuzzy_wrap);
 @EXPORT_OK = @subs;
 %EXPORT_TAGS = ('all' => [ @subs ]);

@@ -36,7 +36,7 @@
    "provides" : {
       "Text::Wrap::Smart::XS" : {
          "file" : "lib/Text/Wrap/Smart/XS.pm",
-         "version" : "0.06_01"
+         "version" : "0.06_02"
       }
    },
    "release_status" : "testing",
@@ -45,6 +45,6 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.06_01",
+   "version" : "0.06_02",
    "x_serialization_backend" : "JSON::PP version 2.97001"
 }
