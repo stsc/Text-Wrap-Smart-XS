@@ -1,5 +1,15 @@
 Revision history for Perl extension Text::Wrap::Smart::XS.
 
+0.06_03  2021-05-21  <schubiger@cpan.org>
+
+ - Return early when empty string.
+
+ - Move calculating average to a function.
+
+ - New macro SAVE_STRING().
+
+ - Note that text is being preprocessed.
+
 0.06_02  2021-05-16  <schubiger@cpan.org>
 
  - Handle substitution of form feeds/tabs.

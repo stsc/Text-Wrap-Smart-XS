@@ -21,6 +21,19 @@
 #define IS_WHITESPACE(ws) \
     (ws == ' ' || ws == '\f' || ws == '\n' || ws == '\r' || ws == '\t')
 
+#define SAVE_STRING(str, size, t)        \
+    Newx (str, size + 1, char);          \
+                                         \
+    strncpy (str, t, size);              \
+    *(str + size) = '\0';                \
+                                         \
+    t += size;                           \
+                                         \
+    EXTEND (SP, 1);                      \
+    PUSHs (sv_2mortal(newSVpv(str, 0))); \
+                                         \
+    Safefree (str);
+
 static const char *
 trim (const char *text, char *ch)
 {
@@ -98,6 +111,16 @@ spaces_to_space (char *string)
     *s = '\0';
 }
 
+static unsigned long
+calc_average (unsigned long length, unsigned int wrap_at)
+{
+    unsigned int i;
+    i = length / wrap_at;
+    if (length % wrap_at != 0)
+      i++;
+    return ceil ((double)length / (double)i);
+}
+
 MODULE = Text::Wrap::Smart::XS                PACKAGE = Text::Wrap::Smart::XS
 
 void
@@ -106,7 +129,6 @@ xs_exact_wrap (text, wrap_at)
       unsigned int wrap_at;
     PROTOTYPE: $$
     INIT:
-      unsigned int i;
       unsigned long average, length, offset;
       char *string = NULL;
       char *eot, *t;
@@ -115,27 +137,17 @@ xs_exact_wrap (text, wrap_at)
       length = strlen (t);
       eot = t + length;
 
-      i = length / wrap_at;
-      if (length % wrap_at != 0)
-        i++;
-      average = ceil ((float)length / (float)i);
+      if (length == 0)
+        XSRETURN_EMPTY;
+
+      average = calc_average (length, wrap_at);
 
       for (offset = 0; offset < length && *t; offset += average)
         {
           char *str;
           unsigned long size = average > (eot - t) ? (eot - t) : average;
 
-          Newx (str, size + 1, char);
-
-          strncpy (str, t, size);
-          *(str + size) = '\0';
-
-          t += size;
-
-          EXTEND (SP, 1);
-          PUSHs (sv_2mortal(newSVpv(str, 0)));
-
-          Safefree (str);
+          SAVE_STRING (str, size, t);
         }
 
       Safefree (string);
@@ -146,7 +158,6 @@ xs_fuzzy_wrap (text, wrap_at)
       unsigned int wrap_at;
     PROTOTYPE: $$
     INIT:
-      unsigned int i;
       unsigned long average, length;
       char *string = NULL;
       char *t;
@@ -154,10 +165,10 @@ xs_fuzzy_wrap (text, wrap_at)
       PRE_PROCESS (text, string, t);
       length = strlen (t);
 
-      i = length / wrap_at;
-      if (length % wrap_at != 0)
-        i++;
-      average = ceil ((float)length / (float)i);
+      if (length == 0)
+        XSRETURN_EMPTY;
+
+      average = calc_average (length, wrap_at);
 
       while (*t)
         {
@@ -199,17 +210,7 @@ xs_fuzzy_wrap (text, wrap_at)
           if (!size)
             break;
 
-          Newx (str, size + 1, char);
-
-          strncpy (str, t, size);
-          *(str + size) = '\0';
-
-          t += size;
-
-          EXTEND (SP, 1);
-          PUSHs (sv_2mortal(newSVpv(str, 0)));
-
-          Safefree (str);
+          SAVE_STRING (str, size, t);
 
           if (*t)
             t++;

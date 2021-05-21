@@ -10,7 +10,7 @@ use Params::Validate ':all';
 
 our ($VERSION, @EXPORT_OK, %EXPORT_TAGS, @subs);
 
-$VERSION = '0.06_02';
+$VERSION = '0.06_03';
 @subs = qw(exact_wrap fuzzy_wrap);
 @EXPORT_OK = @subs;
 %EXPORT_TAGS = ('all' => [ @subs ]);
@@ -115,6 +115,10 @@ C<:all - *()>
 
 The wrapping length will not be applied directly, but is used
 to calculate the average length to split text into chunks.
+
+Text will be normalized prior to being processed, i.e. leading
+and trailing whitespace will be chopped off before each remaining
+whitespace is converted to a literal space.
 
 =head1 SEE ALSO
 
