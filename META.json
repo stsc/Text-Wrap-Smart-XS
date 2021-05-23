@@ -36,15 +36,18 @@
    "provides" : {
       "Text::Wrap::Smart::XS" : {
          "file" : "lib/Text/Wrap/Smart/XS.pm",
-         "version" : "0.06_03"
+         "version" : "0.06_04"
       }
    },
    "release_status" : "testing",
    "resources" : {
       "license" : [
          "http://dev.perl.org/licenses/"
-      ]
+      ],
+      "repository" : {
+         "url" : "https://github.com/stsc/Text-Wrap-Smart-XS"
+      }
    },
-   "version" : "0.06_03",
+   "version" : "0.06_04",
    "x_serialization_backend" : "JSON::PP version 2.97001"
 }

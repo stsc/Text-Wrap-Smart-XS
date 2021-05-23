@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 4;
+use Test::More tests => 2 * 2;
 use Text::Wrap::Smart::XS qw(exact_wrap fuzzy_wrap);
 
 my $wrap_at  = 60;

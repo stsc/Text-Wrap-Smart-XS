@@ -138,7 +138,10 @@ xs_exact_wrap (text, wrap_at)
       eot = t + length;
 
       if (length == 0)
-        XSRETURN_EMPTY;
+        {
+          Safefree (string);
+          XSRETURN_EMPTY;
+        }
 
       average = calc_average (length, wrap_at);
 
@@ -166,7 +169,10 @@ xs_fuzzy_wrap (text, wrap_at)
       length = strlen (t);
 
       if (length == 0)
-        XSRETURN_EMPTY;
+        {
+          Safefree (string);
+          XSRETURN_EMPTY;
+        }
 
       average = calc_average (length, wrap_at);
 
