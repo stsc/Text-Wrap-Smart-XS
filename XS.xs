@@ -148,7 +148,7 @@ xs_exact_wrap (text, wrap_at)
       for (offset = 0; offset < length && *t; offset += average)
         {
           char *str;
-          unsigned long size = average > (eot - t) ? (eot - t) : average;
+          const unsigned long size = average > (eot - t) ? (eot - t) : average;
 
           SAVE_STRING (str, size, t);
         }
